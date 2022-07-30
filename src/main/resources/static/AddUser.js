@@ -35,7 +35,7 @@ async function newUser() {
                 firstName: form.firstName.value,
                 lastName: form.lastName.value,
                 age: form.age.value,
-                username: form.username.value,
+                email: form.email.value,
                 password: form.password.value,
                 roles: newUserRoles
             })

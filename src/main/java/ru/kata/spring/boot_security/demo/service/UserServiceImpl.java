@@ -23,23 +23,29 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-
+    @Override
     public User findById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
-
+    @Override
     public List<User> findAll() {
         return userRepository.findAll();
     }
-
+    @Override
     @Transactional
     public void saveUser(User user) {
-//        if (userRepository.findByUsername(user.getUsername()) == null) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userRepository.save(user);
-//        }
     }
-
+    @Override
+    @Transactional
+    public void updateUser(User user) {
+        if (!user.getPassword().equals(userRepository.getById(user.getId()).getPassword())) {
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        }
+        userRepository.save(user);
+    }
+    @Override
     @Transactional
     public void deleteById(Long id) {
         userRepository.deleteById(id);
@@ -47,12 +53,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByUsername(email);
     }
-
+    @Override
     public User findByEmail(String email) {
-        return  userRepository.findByUsername(email);
+        return  userRepository.findByEmail(email);
     }
 
 }

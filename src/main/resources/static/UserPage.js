@@ -6,7 +6,7 @@ async function thisUser() {
         .then(res => res.json())
         .then(data => {
             // Добавляем информацию в шапку
-            $('#headerUsername').append(data.username);
+            $('#headerUsername').append(data.email);
             let roles = data.roles.map(role => " " + role.name.substring(5));
             $('#headerRoles').append(roles);
 
@@ -17,7 +17,7 @@ async function thisUser() {
                 <td>${data.firstName}</td>
                 <td>${data.lastName}</td>
                 <td>${data.age}</td>
-                <td>${data.username}</td>
+                <td>${data.email}</td>
                 <td>${roles}</td>)`;
             $('#userPanelBody').append(user);
         })

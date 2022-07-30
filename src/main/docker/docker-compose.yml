@@ -1,0 +1,29 @@
+#version: '2'
+#
+#services:
+#      app:
+#            image: 'imranmadbar/docker-spring-boot-mysql:latest'
+#            build:
+#                  context: .
+#            container_name: app
+#            depends_on:
+#                  - db
+#            environment:
+#                  - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/dbtocrudapp
+#                  - SPRING_DATASOURCE_USERNAME=root
+#                  - SPRING_DATASOURCE_PASSWORD=1234
+#                  - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+#            links:
+#                  - "db:db"
+#
+#      db:
+#            image: 'mysql:latest'
+#            container_name: db
+#            environment:
+#                  - MYSQL_ROOT_PASSWORD=1234
+#                  - MYSQL_DATABASE=dbtocrudapp
+#
+#volumes:
+#      db:
+#            driver: local
+

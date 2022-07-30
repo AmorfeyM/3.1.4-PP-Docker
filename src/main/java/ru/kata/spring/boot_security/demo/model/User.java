@@ -6,7 +6,6 @@ import org.hibernate.Hibernate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -14,7 +13,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -28,22 +26,22 @@ public class User implements UserDetails {
    @Column(name = "id")
    private Long id;
 
-   @Column(name = "firstname")
+   @Column(name = "firstName")
    private String firstName;
 
-   @Column(name = "lastname")
+   @Column(name = "lastName")
    private String lastName;
 
    @Column(name = "age")
    private int age;
 
    @Column(name = "email", unique = true, nullable = false)
-   private String username;
+   private String email;
 
    @Column(name = "password")
    private String password;
 
-   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+   @ManyToMany(fetch = FetchType.LAZY)
    @JoinTable(
            name = "users_roles",
            joinColumns = @JoinColumn(name = "user_id"),
@@ -56,7 +54,7 @@ public class User implements UserDetails {
    public User() {
    }
    public User(String username, String password) {
-      this.username = username;
+      this.email = username;
       this.password = password;
    }
 
@@ -68,8 +66,9 @@ public class User implements UserDetails {
 
    @Override
    public String getUsername() {
-      return username;
+      return email;
    }
+
    @Override
    @JsonIgnore
    public boolean isAccountNonExpired() {
@@ -114,7 +113,7 @@ public class User implements UserDetails {
               "id=" + id +
               ", firstName='" + firstName + '\'' +
               ", lastName='" + lastName + '\'' +
-              ", email='" + username + '\'' +
+              ", email='" + email + '\'' +
               ", roleList=" + roles +
               '}';
    }

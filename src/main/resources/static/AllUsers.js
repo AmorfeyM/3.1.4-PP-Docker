@@ -14,7 +14,7 @@ async function allUsers() {
                             <td>${user.firstName}</td>
                             <td>${user.lastName}</td>   
                             <td>${user.age}</td>                      
-                            <td>${user.username}</td>
+                            <td>${user.email}</td>
                             <td>${user.roles.map(role => " " + role.name.substring(5))}</td>
                             <td>
                                 <button type="button" class="btn btn-info" data-toggle="modal" id="buttonEdit"

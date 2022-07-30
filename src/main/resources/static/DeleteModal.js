@@ -11,7 +11,7 @@ async function showDeleteModal(id) {
     form.firstName.value = user.firstName;
     form.lastName.value = user.lastName;
     form.age.value = user.age;
-    form.username.value = user.username;
+    form.email.value = user.email;
 
 
     $('#rolesDeleteUser').empty();
