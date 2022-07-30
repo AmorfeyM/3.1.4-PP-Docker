@@ -1,3 +1,10 @@
+#создание сети
+#docker network create nameNetwork
+#
+#подключение контейнера к сети
+#docker network connect nameNetwork nameContainer
+
+
 #version: '2'
 #
 #services:
@@ -29,6 +36,10 @@
 
 #127.0.0.1
 
+#
+#create database dbtocrudapp;
+#use dbtocrudapp;
+#
 #CREATE TABLE `users` (
 #`id` BIGINT(8) NOT NULL AUTO_INCREMENT,
 #`firstName` VARCHAR(255) NOT NULL,
@@ -38,6 +49,7 @@
 #`password` VARCHAR(255) NOT NULL,
 #PRIMARY KEY (`id`)
 #);
+
 
 #application-docker.properties:
 #jdbc.url = jdbc:mysql://kamienica-db:3333/kamienica?useSSL=false&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
