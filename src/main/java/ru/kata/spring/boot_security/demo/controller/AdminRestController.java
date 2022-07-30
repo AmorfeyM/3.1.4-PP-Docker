@@ -16,8 +16,8 @@ import java.util.Set;
 @RequestMapping("/api")
 public class AdminRestController {
 
-    private UserService userService;
-    private RoleService roleService;
+    private final UserService userService;
+    private final RoleService roleService;
 
     public AdminRestController(UserService userService, RoleService roleService) {
         this.userService = userService;
